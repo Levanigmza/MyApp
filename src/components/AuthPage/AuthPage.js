@@ -3,6 +3,7 @@ import './AuthPage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PasswordRecovery from './PasswordRecoveryModal';
+import RegisterModal from './RegisterModal';
 
 const AuthPage = () => {
     const [isRegisterOpen, setRegisterOpen] = useState(false);
@@ -12,6 +13,11 @@ const AuthPage = () => {
     const closeRegister = () => setRegisterOpen(false);
     const openRecovery = () => setRecoveryOpen(true);
     const closeRecovery = () => setRecoveryOpen(false);
+
+    const handleRegister = (formData) => {
+        console.log('Registering user:', formData);
+        // Handle registration logic here
+    };
 
     return (
         <div className="auth-page">
@@ -29,13 +35,21 @@ const AuthPage = () => {
                         <input type="text" placeholder="Username" required />
                         <input type="password" placeholder="Password" required />
                         <button className="auth-button" type="submit">Login</button>
-                        <button className="recovery-button" onClick={openRecovery}>Forgot Password?</button>
                     </form>
+                    <div className="recovery">
+                        <button className="recovery-button" onClick={openRecovery}>Forgot Password?</button>
+                    </div>
+                    <div className="recovery">
+                        <button className="register" onClick={openRegister}>Register</button>
+                    </div>
                 </div>
             </div>
 
             {isRecoveryOpen && (
                 <PasswordRecovery closeRecovery={closeRecovery} />
+            )}
+            {isRegisterOpen && (
+                <RegisterModal isOpen={isRegisterOpen} onClose={closeRegister} onRegister={handleRegister} />
             )}
 
             <Footer />

@@ -14,6 +14,7 @@ Footer{
     justify-content: space-between;    min-height: 100vh;
     flex-direction: column;
     background: linear-gradient(135deg, #1f1f1f, #333);
+
     color: #fff;
   }
   
@@ -33,15 +34,65 @@ Footer{
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
-  
-  .auth-image img {
-    width: 65vw;
-        height: auto;
-        border-radius: 5px;
+  @keyframes floating {
+    0% {
+        transform: translate(0, 0); /* Original position */
+        box-shadow: 30px -2px 28px rgba(255, 242, 242, 1);
+    }
+    20% {
+        transform: translate(-5px, -5px); /* Moving to top-left */
+        box-shadow: -10px -10px 28px rgba(255, 242, 242, 0.9);
+    }
+    40% {
+        transform: translate(5px, 5px); /* Moving to top-right */
+        box-shadow: 10px -10px 28px rgba(255, 242, 242, 0.9);
+    }
+    60% {
+        transform: translate(5px, 5px); /* Moving to bottom-right */
+        box-shadow: 10px 10px 28px rgba(255, 242, 242, 0.9);
+    }
+    80% {
+        transform: translate(-5px, -5px); /* Moving to bottom-left */
+        box-shadow: -10px 10px 28px rgba(255, 242, 242, 0.9);
+    }
+    100% {
+        transform: translate(0, 0); /* Back to the original position */
+        box-shadow: 30px -2px 28px rgba(255, 242, 242, 1); /* Back to original shadow */
+    }
+}
+
+@keyframes floatingonlyshaddow {
+    0% {
+        box-shadow: 30px -2px 28px rgba(255, 242, 242, 1);
+    }
+    20% {
+        box-shadow: -10px -10px 28px rgba(255, 242, 242, 0.9);
+    }
+    40% {
+        box-shadow: 10px -10px 28px rgba(255, 242, 242, 0.9);
+    }
+    60% {
+        box-shadow: 10px 10px 28px rgba(255, 242, 242, 0.9);
+    }
+    80% {
+        box-shadow: -10px 10px 28px rgba(255, 242, 242, 0.9);
+    }
+    100% {
+        box-shadow: 30px -2px 28px rgba(255, 242, 242, 1); /* Back to original shadow */
+    }
+}
+
+.auth-image img {
+    width: 63vw;
+    height: auto;
+    border-radius: 5px;
     object-fit: cover;
-    animation: slideInLeft 1s ease;
-  }
+    animation: floating 10s infinite linear;
+    box-shadow: 30px -2px 28px rgb(255 242 242 / 100%);
+}
+
   
   @keyframes slideInLeft {
     from {
@@ -61,7 +112,7 @@ Footer{
     padding: 40px;
     background: #222;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -11px 22px 28px rgb(255 242 242 / 26%);
     animation: slideInRight 1s ease;
   }
   
@@ -103,21 +154,56 @@ Footer{
     border-color: #f39c12;
     outline: none;
   }
+  .recovery{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
   
   .auth-button,
   .recovery-button  {
+    margin-top: 10px;
     padding: 12px;
     background-color: #f39c12;
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .register{
+    padding: 12px;
+    background-color: #222;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .register:hover{
+    color:#f39c12;
+    transform: scale(1.05);
+  }
+  .register-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
   }
   
   .recovery-button {
     background-color: #e0b87b;
+  }
+  .recovery-button:hover {
+    background-color: #d49139;
+    transform: scale(1.05);
 
   }
   
@@ -146,6 +232,13 @@ Footer{
     width: 80%;
     max-width: 500px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-content form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .modal-content input {
