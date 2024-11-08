@@ -1,0 +1,39 @@
+
+.footer {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    height: 5vh;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .social-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .social-link:hover {
+    color: #f39c12;
+    transform: translateY(-5px);
+  }
+  
+  .social-link:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .social-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  

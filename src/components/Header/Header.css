@@ -1,0 +1,82 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #1f1f1f;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    height: 5vh;
+
+  }
+  .logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    font-family: 'Poppins', sans-serif;
+
+  }
+  
+  .logo-img {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    animation: slideInLeft 1s ease;
+
+  }
+  
+  .nav-link:hover {
+    color: #f39c12;
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+      height: 20vh;
+      padding: 20px;
+
+    }
+    .nav {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
