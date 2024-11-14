@@ -4,6 +4,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PasswordRecovery from './PasswordRecoveryModal';
 import RegisterModal from './RegisterModal';
+import MouseCursor from './MouseCursor';
+
 
 const AuthPage = () => {
     const [isRegisterOpen, setRegisterOpen] = useState(false);
@@ -16,8 +18,10 @@ const AuthPage = () => {
 
     const handleRegister = (formData) => {
         console.log('Registering user:', formData);
-        // Handle registration logic here
     };
+
+
+
 
     return (
         <div className="auth-page">
@@ -27,6 +31,22 @@ const AuthPage = () => {
                 <div className="auth-image">
                     <img src="/back1.jpg" alt="Login Illustration" />
                 </div>
+
+                <div class="animateicon1">
+                    <img src="/chat.png" alt="Login Illustration" />
+                    <p>"Experience seamless, real-time conversations with friends, family, and colleagues, all in one place, for a more connected world."</p>
+
+                </div>
+                <div class="animateicon3">
+                    <img src="/group.png" alt="Login Illustration" />
+                </div>
+
+                <div class="animateicon2">
+                    <p>"Connect Instantly, Anytime, Anywhere with Our Chat App!"</p>
+                    <img src="/live-chat.png" alt="Login Illustration" />
+                </div>
+
+
 
                 {/* Right Side Form Section */}
                 <div className="auth-form">
@@ -49,10 +69,12 @@ const AuthPage = () => {
                 <PasswordRecovery closeRecovery={closeRecovery} />
             )}
             {isRegisterOpen && (
-                <RegisterModal isOpen={isRegisterOpen} onClose={closeRegister} onRegister={handleRegister} />
+                <RegisterModal closeRegister={closeRegister} />
             )}
 
             <Footer />
+            <MouseCursor />
+
         </div>
     );
 };

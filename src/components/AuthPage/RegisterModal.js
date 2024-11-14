@@ -1,79 +1,106 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './AuthPage.css';
+import registerService from '../../Services/AuthPage/RegisterService';
 
-const RegisterModal = ({ isOpen, onClose, onRegister }) => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthDate, setBirthDate] = useState(null);
-    const [sex, setSex] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleRegister = (e) => {
-        e.preventDefault();
-        const formData = { name, surname, email, birthDate, sex, password };
-        onRegister(formData);
-        onClose();
+const RegistrationForm = ({ closeRegister }) => {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        country: '',
+        city: '',
+        status: 1,
+    });
+    const [errorMessage, setErrorMessage] = useState(''); // State for error message
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    if (!isOpen) return null;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrorMessage(''); // Clear previous error message
+
+        try {
+            const response = await registerService.register(formData);
+            if(response.status === 200){
+                closeRegister(); 
+            }
+        } catch (error) {
+
+            setErrorMessage(error.response?.data?.message || 'Registration failed. Please try again.');
+        }
+    };
 
     return (
         <div className="modal">
             <div className="modal-content">
+                <div class="registerHead">
+                <div></div>
                 <h2>Register</h2>
-                <form onSubmit={handleRegister}>
-                    <label>
-                        Name:
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                    </label>
+                <button class="close" onClick={closeRegister}>X</button>
+                </div>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-                    <label>
-                        Surname:
-                        <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} required />
-                    </label>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        placeholder="First Name"
+                    />
+                    <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        placeholder="Last Name"
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Email"
+                    />
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        placeholder="Phone Number"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Password"
+                    />
+                    <input
+                        type="text"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        placeholder="Country"
+                    />
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        placeholder="City"
+                    />
+                    <button type="submit">Register</button>
 
-                    <label>
-                        Email:
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    </label>
-
-                    <label>
-                        Birth Date:
-                        <DatePicker
-                            selected={birthDate}
-                            onChange={(date) => setBirthDate(date)}
-                            dateFormat="yyyy-MM-dd"
-                            placeholderText="Select date"
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        Sex:
-                        <select value={sex} onChange={(e) => setSex(e.target.value)} required>
-                            <option value="" disabled>Select sex</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </label>
-
-                    <label>
-                        Password:
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    </label>
-
-                    <div className="modal-buttons">
-                        <button type="submit" className="register-button">Register</button>
-                        <button type="button" onClick={onClose} className="cancel-button">Cancel</button>
-                    </div>
                 </form>
             </div>
         </div>
     );
 };
 
-export default RegisterModal;
+export default RegistrationForm;

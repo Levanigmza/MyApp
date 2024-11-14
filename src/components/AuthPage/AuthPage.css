@@ -1,10 +1,13 @@
 
 Header{
-    width: 96vw;
+    box-shadow: 0px 27px 30px rgb(148 144 144 / 30%);
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 Footer{
     width: 100vw;
+
 }
 .auth-page {
     overflow-y: hidden;
@@ -34,7 +37,8 @@ Footer{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    position: relative;
+    overflow: hidden;
   }
   @keyframes floating {
     0% {
@@ -89,9 +93,10 @@ Footer{
     height: auto;
     border-radius: 5px;
     object-fit: cover;
-    animation: floating 10s infinite linear;
-    box-shadow: 30px -2px 28px rgb(255 242 242 / 100%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+
 }
+
 
   
   @keyframes slideInLeft {
@@ -112,7 +117,7 @@ Footer{
     padding: 40px;
     background: #222;
     border-radius: 10px;
-    box-shadow: -11px 22px 28px rgb(255 242 242 / 26%);
+    box-shadow: -11px 22px 28px rgba(255, 242, 242, 0.589);
     animation: slideInRight 1s ease;
   }
   
@@ -221,12 +226,16 @@ Footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
   }
   
   .modal-content {
     background-color: #222;
     color: #fff;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+
     border-radius: 10px;
     text-align: center;
     width: 80%;
@@ -239,6 +248,7 @@ Footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap:10px;
   }
   
   .modal-content input {
@@ -307,7 +317,37 @@ Footer{
     background: #d35400;
     font-weight: 500 !important;
   }
+  .modal-content form label{
+    width: 100%;
+    text-align: left;
+  }
 
+  .react-datepicker-wrapper{
+    width: 100% !important;
+
+  }
+  .modal-content form select {
+    width: 96%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 2px solid #f39c12;
+    background: #333;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus and hover effects for select */
+.modal-content form select:focus {
+    border-color: #d35400;
+    outline: none;
+}
+
+.modal-content form select:hover {
+    background-color: #444;
+}
 
   @media (max-width: 768px) {
 
@@ -343,3 +383,131 @@ Footer{
       font-size: 1rem;
     }
   }
+
+  .modal-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:25px
+  }
+
+  .registerHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+text-align: center; 
+margin-bottom: 30px;
+
+}
+.registerHead button{
+  margin-top: 1px !important;
+}
+
+
+.animateicon1,
+.animateicon2,
+.animateicon3 {
+  position: absolute;
+  z-index: 998;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  background-color: rgb(214, 203, 203);
+    color: #000000; /* or any color for the text */
+  padding: 20px;
+  font-size: 16.5px;
+  border: 1px solid #f39c12;
+  border-radius: 10px;
+  max-width: 20%;
+  font-weight: 600;
+
+}
+
+.animateicon1{
+  top:50%;
+  right: 10%;
+  animation: floating1 10s infinite linear;
+
+}
+
+.animateicon2{
+  top:30%;
+  right: 30%;
+  animation: floating2 10s infinite linear;
+
+}
+.animateicon3{
+  top: 60%;
+  right: 35%;
+  animation: floating3 10s infinite linear;
+  border-radius: 50%;
+
+}
+.animateicon1 img ,
+.animateicon2 img {
+  width: 110px;
+}
+.animateicon3 img {
+  width: 80px;
+}
+
+
+
+@keyframes floating2 {
+  0% {
+      transform: translate(0, 0); /* Original position */
+  }
+  25% {
+      transform: translate(0, -20px); /* Moving upwards */
+  }
+  50% {
+      transform: translate(0, 20px); /* Moving downwards */
+  }
+  75% {
+      transform: translate(0, -20px); /* Moving upwards */
+  }
+  100% {
+      transform: translate(0, 0); /* Back to the original position */
+  }
+}
+
+@keyframes floating1 {
+  0% {
+      transform: translate(0, 0); /* Original position */
+  }
+  20% {
+      transform: translate(-10px, -5px); /* Moving to top-left */
+  }
+  40% {
+      transform: translate(5px, 10px); /* Moving to top-right */
+  }
+  60% {
+      transform: translate(10px, 5px); /* Moving to bottom-right */
+  }
+  80% {
+      transform: translate(-5px, -10px); /* Moving to bottom-left */
+  }
+  100% {
+      transform: translate(0, 0); /* Back to the original position */
+  }
+}
+@keyframes floating3 {
+  0% {
+      transform: translate(0, 0); /* Original position */
+  }
+  25% {
+      transform: translate(20px, 0); /* Moving right */
+  }
+  50% {
+      transform: translate(-20px, 0); /* Moving left */
+  }
+  75% {
+      transform: translate(20px, 0); /* Moving right */
+  }
+  100% {
+      transform: translate(0, 0); /* Back to the original position */
+  }
+}
+
